@@ -906,9 +906,8 @@ QDF_STATUS hdd_softap_rx_packet_cbk(void *context, qdf_nbuf_t rxBuf)
 			pAdapter->aStaInfo[staid].last_tx_rx_ts =
 				qdf_system_ticks();
 		}
+		hdd_dhcp_indication(pAdapter, staid, skb, QDF_RX);
 	}
-
-	hdd_dhcp_indication(pAdapter, staid, skb, QDF_RX);
 
 	if (qdf_unlikely(qdf_nbuf_is_ipv4_eapol_pkt(skb) &&
 			 qdf_mem_cmp(qdf_nbuf_data(skb) +
